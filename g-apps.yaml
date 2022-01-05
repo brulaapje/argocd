@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bookinfo
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: cpe
+  project: bookinfo
+  source:
+    kustomize: {}
+    path: guestbook
+    repoURL: https://github.com/brulaapje/argocd.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: bookinfo
+  namespace: argocd
+spec:
+  destinations:
+  - namespace: cpe
+    server: https://kubernetes.default.svc
+  namespaceResourceWhitelist:
+  - group: "*"
+    kind: "*"
+  sourceRepos:
+  - "*"

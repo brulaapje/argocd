@@ -1,0 +1,121 @@
+resources:
+- bookinfo.yaml
+#- ingress.yaml
+
+# images:
+# - name: docker.io/istio/examples-bookinfo-details-v1
+#   newName: artifacts.cf.saxo/docker/istio/examples-bookinfo-details-v1
+# - name: docker.io/istio/examples-bookinfo-productpage-v1
+#   newName: artifacts.cf.saxo/docker/istio/examples-bookinfo-productpage-v1
+# - name: docker.io/istio/examples-bookinfo-reviews-v1
+#   newName: artifacts.cf.saxo/docker/istio/examples-bookinfo-reviews-v1
+# - name: docker.io/istio/examples-bookinfo-ratings-v1
+#   newName: artifacts.cf.saxo/docker/istio/examples-bookinfo-ratings-v1
+# - name: docker.io/istio/examples-bookinfo-reviews-v2
+#   newName: artifacts.cf.saxo/docker/istio/examples-bookinfo-reviews-v2
+# - name: docker.io/istio/examples-bookinfo-reviews-v3
+#   newName: artifacts.cf.saxo/docker/istio/examples-bookinfo-reviews-v3
+
+patchesStrategicMerge:
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: productpage-v1
+  spec:
+    template:
+      spec:
+        containers:
+        - name: productpage
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: details-v1
+  spec:
+    template:
+      spec:
+        containers:
+        - name: details
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: ratings-v1
+  spec:
+    template:
+      spec:
+        containers:
+        - name: ratings
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: reviews-v1
+  spec:
+    template:
+      spec:
+        containers:
+        - name: reviews
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: reviews-v2
+  spec:
+    template:
+      spec:
+        containers:
+        - name: reviews
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: reviews-v3
+  spec:
+    template:
+      spec:
+        containers:
+        - name: reviews
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
