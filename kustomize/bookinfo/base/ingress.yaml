@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bookinfo
+  annotations:
+    cert-manager.io/issuer: cluster-adcs-issuer
+    cert-manager.io/issuer-group: adcs.certmanager.csf.nokia.com
+    cert-manager.io/issuer-kind: ClusterAdcsIssuer
+    kubernetes.io/ingress.class: in
+spec:
+  rules:
+  - host: bookinfo.cpe.cpe.eu41x.inf.iitech.dk
+    http:
+      paths:
+      - backend:
+          service:
+            name: productpage
+            port:
+              name: http
+        path: "/"
+        pathType: Prefix
+  tls:
+  - hosts:
+    - bookinfo.cpe.cpe.local.example.com
+    secretName: bookinfo-server-tls

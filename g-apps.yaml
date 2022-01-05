@@ -10,7 +10,7 @@ spec:
   project: bookinfo
   source:
     kustomize: {}
-    path: guestbook
+    path: kustomize/bookinfo/cpe
     repoURL: https://github.com/brulaapje/argocd.git
     targetRevision: main
   syncPolicy:
