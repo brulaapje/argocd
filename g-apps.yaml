@@ -3,9 +3,11 @@ kind: Application
 metadata:
   name: bookinfo
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    name: in-cluster
+    name: https://kubernetes.default.svc
     namespace: cpe
   project: bookinfo
   source:
